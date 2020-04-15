@@ -99,8 +99,107 @@ a {
 }
 
 
+.userfeed {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+}
 
 
+.post {
+	width: 100%;
+	background-color: #FFF;
+	border-radius: 10px;
+	margin-bottom: 30px;
+	overflow: hidden;
+	border: 1px solid rgba(0, 0, 0, .1);
+	display: flex;
+	flex-direction: column;	
+}
 
+.post__header {
+	padding: 8px;
+	color: #000;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.post__header .user {
+	display: flex;
+	align-items: center;
+}
+
+.post__header .user__thumbnail {
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	display: flex;
+	overflow: hidden;
+	margin-right: 8px;
+}
+
+.post__header .user__thumbnail img{
+	height: 100%;
+	width: 100%;
+}
+
+.post__header .user__name {
+	font-size: 1em;
+}
+
+.post__image{
+	margin: 0;
+	width: 100%;
+	overflow: hidden;
+	height: auto;
+}
+
+.post__image img{
+	width: 100%;
+}
+
+.post__actions {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	padding: 4px 0;
+}
+
+.post__action {
+	font-size: 1.3em;
+	margin: 0 8px;
+}
+
+.post__action:last-of-type {
+	justify-self: end;
+	margin-left: auto;
+}
+
+.post__stats {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.post__stats .user {
+	width: 60px;
+	height: 60px;
+	margin-right: 12px;
+}
+
+.post__stats .user__thumbnail,
+.post__stats .user__thumbnail img {
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+}
+
+.post__stats .user span {
+	font-size: 1.2em;
+}
 
 
