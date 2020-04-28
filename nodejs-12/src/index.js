@@ -17,7 +17,7 @@ function getShoppingCart(ids, productsList) {
 	})
 	let promotion = promotions[categories.length - 1]
 
-	const products = filteredProducts.reduce( (result, product) => result.concat({ name: product.name, category: product.category }) , [])
+	const products = filteredProducts.map(({ name, category }) => ({ name, category }))
 	let price = 0
   filteredProducts.forEach(product => {
 		price = product.regularPrice
