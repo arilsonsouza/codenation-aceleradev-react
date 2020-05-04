@@ -1,36 +1,84 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 
 import './App.scss';
 
 import Topbar from './components/Topbar';
 import Filters from './components/Filters';
+import Contacts from './components/Contacts';
 
-class App extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Topbar/>
+const API_URL = 'https://5e82ac6c78337f00160ae496.mockapi.io/api/v1/contacts';
 
-        <div className="container">
-          <Filters/>
-        </div>
+const SORTS = [
+  { 
+    label: 'Nome',
+    sortKey: 'name',
+    sort: () => {}
+  },
+  { 
+    label: 'País',
+    sortKey: 'country',
+    sort: () => {}
+  },
+  { 
+    label: 'Empresa',
+    sortKey: 'company',
+    sort: () => {}
+  },
+  { 
+    label: 'Departamento',
+    sortKey: 'department',
+    sort: () => {}
+  },
+  { 
+    label: 'Data de admissão',
+    sortKey: 'admissionDate',
+    sort: () => {}
+  },
+]
 
-        <div className="container">
-          <section className="contacts">
-            <article className="contact">
-              <span className="contact__avatar" />
-              <span className="contact__data">Nome</span>
-              <span className="contact__data">Telefone</span>
-              <span className="contact__data">País</span>
-              <span className="contact__data">Admissão</span>
-              <span className="contact__data">Empresa</span>
-              <span className="contact__data">Departamento</span>
-            </article>
-          </section>
-        </div>
-      </React.Fragment>
-    )
+const App = () => {
+  const [contacts, setContacts] = useState([]);
+  const [sortKey, setSortKey] = useState('')
+  
+  const onSort = sortKey => {
+    setSortKey(sortKey)
   }
+
+  const filterByName = query => {
+
+  }
+
+  useEffect(() => {    
+    
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(contact => contact.admissionDate = moment(contact.admissionDate).format('DD-MM-YYYY'))
+        setContacts(data)
+      })
+      .catch(err => console.error(err))
+    
+  }, [])
+
+  return (
+    <>
+      <Topbar/>
+
+      <div className="container">
+        <Filters 
+          sorts={SORTS} 
+          sortKey={sortKey} 
+          onSort={onSort}
+          filterByName={filterByName}/>
+      </div>
+
+      <div className="container">
+        <Contacts contacts={contacts}/>        
+      </div>
+    </>
+  )
+
 }
 
 export default App;
