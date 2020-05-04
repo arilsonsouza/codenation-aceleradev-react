@@ -7,19 +7,22 @@
   position: fixed;
   top: 0;
   width: 100%;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .topbar__logo {
+    display: inline-block;
+    height: 40px;
+    
+    svg {
+      height: 100%;
+    }
+  }
+  
+
 }
 
-.topbar .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.topbar__logo {
-  display: inline-block;
-  height: 40px;
-}
-
-.topbar__logo svg {
-  height: 100%;
-}
