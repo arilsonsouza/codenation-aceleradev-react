@@ -9,7 +9,7 @@ const Filters = ({ sorts, sortKey, onSort, filterByName }) => {
 	useEffect(() => {
 		filterByName(searchQuery)
 	}, [searchQuery])
-	
+
 	return (
 		<section className="filters">
 			<div className="filters__search">
@@ -26,7 +26,11 @@ const Filters = ({ sorts, sortKey, onSort, filterByName }) => {
 			</div>
 
 			{sorts.map(sort => (
-				<Sort currentSortKey={sortKey} key={sort.sortKey} {...sort} onSort={onSort}/>
+				<Sort 
+					currentSortKey={sortKey} 
+					key={sort.sortKey} 
+					{...sort} 					
+					onSort={onSort}/>
 			))}
 		</section>
 	);
