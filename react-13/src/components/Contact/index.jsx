@@ -3,14 +3,14 @@ import moment from 'moment';
 
 import "./styles.scss";
 
-const Contact = ({	name, avatar = null, company, department, admissionDate, phone, country}) => {
+const Contact = ({	data: { name, avatar = null, company, department, admissionDate, phone, country } }) => {
     
   const getFormatedDate = date => {
     const momentDate = moment(date);
     return momentDate.isValid() ? momentDate.format('DD-MM-YYYY') : date
   }
   return (
-    <article className="contact">
+    <article className="contact" data-testid="contact">
       <span className="contact__avatar">
         { avatar && <img src={avatar} title={name} alt={name}/>}
       </span>
