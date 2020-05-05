@@ -40,14 +40,13 @@ const SORTS = [
 const App = () => {
   const [contacts, setContacts] = useState([]);
   const [sortKey, setSortKey] = useState('')
-  
+  const [query, setQuery] = useState('')
+
   const onSort = sortKey => {
     setSortKey(sortKey)
   }
 
-  const filterByName = query => {
-
-  }
+  const filterByName = query => setQuery(query)
 
   useEffect(() => {    
     
@@ -60,6 +59,10 @@ const App = () => {
       .catch(err => console.error(err))
     
   }, [])
+
+  const filteredContacts = query ? contacts.filter(
+    contact => contact.name.toLowerCase().indexOf(query.toLocaleLowerCase()) !== -1
+  ) : contacts
 
   return (
     <>
@@ -74,7 +77,7 @@ const App = () => {
       </div>
 
       <div className="container">
-        <Contacts contacts={contacts}/>        
+        <Contacts contacts={filteredContacts}/>        
       </div>
     </>
   )
