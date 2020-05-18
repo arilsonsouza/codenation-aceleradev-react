@@ -16,13 +16,13 @@ const Topbar = () => (
     	<div className="topbar__group">
 				<button className="topbar__icon">
 					<Link to="/users">
-						<i class="fas fa-users"></i>
+						<i className="fas fa-users"></i>
 						<span>Usuários</span>
 					</Link>
 				</button>
 				<button className="topbar__icon">
 					<Link to="/newuser">
-						<i class="fas fa-user-plus"></i>
+						<i className="fas fa-user-plus"></i>
 						<span>Nova Conta</span>
 					</Link>
 				</button>
