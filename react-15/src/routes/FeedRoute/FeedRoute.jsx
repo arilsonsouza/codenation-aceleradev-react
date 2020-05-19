@@ -12,21 +12,23 @@ const FeedRoute = () => {
 	const [users, setUsers] = useState([]);
 	const [posts, setPosts] = useState([]);
 	const [stories, setStories] = useState([]);
-	const [loading, setLoading] = useState(false);
-
+	const [usersFetched, setUsersFetched] = useState(0);	
+	
 	const getUserPostById = (userId) => users.find(user => user.id === userId);
 
 	const fetchUsers = async ()  => {	
-		setLoading(true)	;
 		const  data  = await UsersService.getUsers();
 		setUsers(data);
-		setLoading(false);
 	}
 	
-	const fetchUsersPost = () => {
-		users.forEach(async (user) => {
-			
-		})
+	const fetchUsersPost = async () => {
+		if (usersFetched === users.length) {
+			return;
+		}
+
+		const userPosts = await UsersService.getUserPosts(users[usersFetched].id);
+		setPosts([...posts, ...userPosts]);
+		setUsersFetched(usersFetched + 1);
 	}
 
 	const fetchStories = async () => {
@@ -42,6 +44,10 @@ const FeedRoute = () => {
 		fetchStories();
 	}, []);
 
+	useEffect(() => {
+		fetchUsersPost();
+	}, [users, usersFetched]);
+
   return (
     <div data-testid="feed-route">
 			{(users.length > 0 && stories.length > 0) && (
@@ -51,7 +57,13 @@ const FeedRoute = () => {
 				/>
 			)}
 
-    	{ loading && <Loading/> }
+    	{users.length !== usersFetched 
+    		? <Loading/> 
+    		: <Posts
+						posts={posts}
+						getUserHandler={getUserPostById}
+    			/>
+    	}
 
     </div>
   );
