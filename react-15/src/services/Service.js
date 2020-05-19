@@ -6,6 +6,13 @@ class Service {
 		const data = await response.json();
 		return data
 	}	
+
+	static async post (endpoint, data) {
+		const response = await fetch(`${API_URL}/${endpoint}`, {
+			method: 'POST',
+			body: JSON.stringify(data)
+		})
+	}
 }
 
 export default Service;

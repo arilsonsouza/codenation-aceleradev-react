@@ -1,6 +1,10 @@
 import Service from './Service';
 
 class UsersService extends Service {
+	static registerUser (user) {
+		return this.post('users', user);
+	}
+
 	static getUsers () {
 		return this.get('users');
 	}
